@@ -46,15 +46,37 @@ Junto con la compañera Sharlin Hernández Sánchez, Deybin David García Garcí
 -**Descripción:** Esta función maneja la interrupción en el pin A0 (PCINT8) del microcontrolador. Detecta un flanco ascendente en el botón conectado al pin A0 y, cuando esto ocurre, activa la bandera button3. La función utiliza la variable UP para asegurarse de que solo se detecta el flanco positivo, evitando que el rebote del botón genere múltiples interrupciones.
 -**Lógica:** La función alterna el valor de la variable UP entre 0 y 1 para detectar el flanco ascendente. Cuando UP es igual a 0, se detecta el flanco positivo y se establece UP = 1. Si UP es igual a 1, se activa la bandera button3 indicando que el botón fue presionado, y UP se reinicia a 0 para permitir la detección del siguiente flanco ascendente.
 
-### 10. Blink_I()
--**Descripción:** Esta función controla el parpadeo de los LEDs conectados a los pines B2, B3, B4 y B5 del microcontrolador. Los LEDs parpadean dos veces, con un tiempo de encendido y apagado de 5 segundos en cada ciclo. Al finalizar el segundo parpadeo, hay una pausa adicional de 7 segundos.
--**Lógica:** La función utiliza un bucle para encender y apagar los LEDs dos veces. Durante cada iteración del bucle, los LEDs se encienden configurando los bits correspondientes de PORTB a 1 (0b00111100) para activar los pines B2, B3, B4 y B5. Luego, los LEDs se apagan configurando PORTB a 0 (0b00000000). Un retardo de 5000 ms se introduce después de cada encendido y apagado, y una pausa final de 7000 ms se aplica después del último ciclo de parpadeo.
 
 ### 11. Blink_F()
 -**Descripción:** Esta función parpadea los LEDs conectados a los pines B2, B3, B4 y B5 del microcontrolador tres veces, con un retardo de 5 segundos entre cada encendido y apagado. El propósito es proporcionar una señal visual clara mediante un patrón de parpadeo.
 -**Lógica:** La función utiliza un bucle para encender y apagar los LEDs tres veces. Durante cada iteración del bucle, los pines B2, B3, B4 y B5 se activan al establecer los bits correspondientes en PORTB a 1 (0b00111100), lo que enciende los LEDs. Luego, los LEDs se apagan configurando PORTB a 0 (0b00000000). Después de cada encendido y apagado, se introduce un retardo de 5000 ms (5 segundos) para mantener los LEDs encendidos y apagados por igual tiempo. Finalmente, hay una pausa opcional de 5 segundos después del tercer ciclo de parpadeo.
 
-### 12. ON_Leds(int *Array_R2)
-**-Descripción:** Esta función enciende una secuencia de LEDs de acuerdo con los valores en un arreglo (Array_R2). Cada valor en el arreglo indica qué LED se debe encender, donde 0 corresponde al LED en B2, 1 al LED en B3, 2 al LED en B4, y 3 al LED en B5.
-**-Lógica:** La función recorre el arreglo Array_R2, el cual contiene una secuencia de valores que determinan qué LED se debe encender en cada paso. Utiliza una estructura switch para determinar qué LED encender en función del valor actual del arreglo. Después de encender el LED correspondiente (llamando a una función específica como Blink_B2(), Blink_B3(), etc.), se introduce un retardo de 2000 ms entre el encendido de cada LED, proporcionando una secuencia clara y visible de luces
+```
+### Uso
 
+Para ejecutar el proyecto 'Simón dice', sigue los siguientes pasos:
+
+1. **Correr el Makefile (si está disponible)**:  
+   Si el proyecto tiene un archivo `Makefile`, puedes compilar el código y generar los archivos necesarios ejecutando el siguiente comando en la terminal:
+
+   make
+
+   Esto debería compilar el código y generar el archivo `.hex` necesario para cargar en el simulador SimulIDE.
+
+2. **Abrir SimulIDE**:  
+   Después de compilar el proyecto, abre el software SimulIDE. Dentro de SimulIDE, carga el archivo `.simu` correspondiente a tu proyecto para configurar la simulación.
+
+3. **Si el comando `make` no funciona**:  
+   Si el comando `make` no está disponible o no funciona, sigue los siguientes pasos manualmente:
+
+   - Compila el archivo `simon.c` usando el siguiente comando:
+
+     avr-gcc -std=c99 -Wall -g -Os -mmcu=attiny4313 -DF_CPU=1000000UL -o simon.bin simon.c
+
+   - Genera el archivo `.hex` necesario para el simulador con el siguiente comando:
+
+     avr-objcopy -j .text -j .data -O ihex simon.bin simon.hex
+
+4. **Montar el archivo `.hex` en SimulIDE**:  
+   Una vez que tengas el archivo `simon.hex`, abre SimulIDE, carga el archivo `.hex` en el microcontrolador ATtiny4313 dentro del simulador, y empieza la simulación para probar el proyecto.
+```
