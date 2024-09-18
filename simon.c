@@ -81,3 +81,20 @@ int Ronda = 4;        // Indica el número de la ronda actual, comenzando en 4 p
 int Array_G[50] = {}; // Array para almacenar la secuencia generada por el juego
 int Array_I[50] = {}; // Array para almacenar la secuencia ingresada por el jugador
 int Cuenta = 0;       // Variable que cuenta los aciertos del jugador
+
+void Timer();
+void Settings_Timers();
+void ON_Leds(int *Array_R2);
+void Blink_B5();
+void Blink_B4();
+void Blink_B3();
+void Blink_B2();
+void Blink_F();
+void Blink_I();
+ISR(INT1_vect);
+ISR(INT0_vect);
+ISR(PCINT1_vect);
+ISR(PCINT0_vect);
+
+int main(void)
+{}
