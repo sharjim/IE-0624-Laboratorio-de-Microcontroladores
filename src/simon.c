@@ -97,7 +97,7 @@ ISR(PCINT1_vect);
 ISR(PCINT0_vect);
 
 int main(void)
-<<<<<<< HEAD
+
 {}
 =======
 {
