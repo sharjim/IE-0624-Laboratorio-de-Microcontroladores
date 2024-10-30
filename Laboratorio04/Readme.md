@@ -57,6 +57,9 @@ El sistema mide la aceleración en los ejes **X, Y, Z** utilizando un giroscopio
 4. **Transmisión de datos:** Si se presiona un botón, los datos se envían mediante USART.
 5. **Actualización de la pantalla:** El contenido se actualiza periódicamente en la pantalla.
 
+## Scripts en Python para Análisis
+
+Estos código en Python complementa la implementación del sismógrafo, permitiendo realizar análisis adicionales sobre los datos recolectados y la conexión con ThingsBoard.
 ## Conclusión
 
 Este proyecto muestra cómo integrar varios periféricos en un sistema embebido usando STM32:
